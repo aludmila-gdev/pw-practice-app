@@ -28,5 +28,21 @@ test.describe('Forms Layoyt Page', () => {
         
         await expect(singTheGridEmailInput).toHaveValue('aludmila2.gdev@gmail.com')
     })
+
+    test('Radio Buttons', async ({page}) => {
+        const usingTheGridForm =  page.locator('nb-card', {hasText: 'Using the Grid'})
+
+        await usingTheGridForm.getByLabel('Option 1').check({force: true})
+
+        const radioStatus = await usingTheGridForm.getByText('Option 1').isChecked()
+
+        expect(radioStatus).toBeTruthy()
+
+
+        const radioStatus2 = await usingTheGridForm.getByText('Option 2').isChecked()
+
+        expect(radioStatus2).toBeFalsy()
+
+    })
 })
 
